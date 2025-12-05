@@ -39,7 +39,7 @@ This project implements a mean-reversion statistical arbitrage strategy using pa
 
 ### **Results**
 
-*(You’ll add charts and metrics once you run your model.)*
+*to add results*
 
 ### **Technologies**
 
