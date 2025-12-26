@@ -1,0 +1,16 @@
+[project]
+name = "pairs-trading-stat-arb"
+version = "0.1.0"
+description = "Pairs trading statistical arbitrage with cointegration + vectorized backtesting."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+pairs-trading = "pairs_trading.cli:main"
