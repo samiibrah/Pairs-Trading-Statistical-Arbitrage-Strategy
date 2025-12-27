@@ -57,8 +57,8 @@ Portfolio performance:
 | Equity (start → end) | **1.00 → 0.56** |
 
 Note: The strategy experienced prolonged drawdowns and failed to recover to initial equity, indicating poor risk-adjusted performance under the tested assumptions.
-Interpretation:
-Despite statistically significant cointegration at pair selection time, the strategy underperformed due to several compounding factors:
+
+Interpretation: Despite statistically significant cointegration at pair selection time, the strategy underperformed due to several compounding factors:
 
 - Weak spread stationarity (ADF p-values > 0.05) led to unreliable mean reversion
 - Regime shifts in large-cap tech and financials degraded historical relationships
