@@ -1,4 +1,4 @@
-# Pairs Trading Statistical Arbitrage Strategy
+pip# Pairs Trading Statistical Arbitrage Strategy
 
 ## Overview
 This project implements a mean-reversion statistical arbitrage strategy using pairs trading. It identifies cointegrated stock pairs, generates long/short trading signals, and evaluates performance using a fully vectorized backtesting engine.

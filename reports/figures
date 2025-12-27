@@ -1,1 +1,18 @@
+Selected pairs:
+   A    B  coint_pvalue
+NVDA  JPM      0.015137
+AMZN META      0.030290
 
+Diagnostics (per pair):
+      pair  coint_pvalue  adf_pvalue_spread  n_days
+ NVDA__JPM      0.015137           0.092571    1195
+AMZN__META      0.030290           0.077762     952
+
+Portfolio metrics:
+- annualized_return: -0.0955
+- sharpe: -0.1823
+- max_drawdown: -0.6920
+- win_rate: 0.4929
+
+Equity curve: start=1.0000 end=0.5563
+![Equity Curve](reports/figures/equity_curve.png)
