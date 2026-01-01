@@ -40,7 +40,7 @@ This project evaluates these assumptions empirically.
 ### 3. Spread Construction
 For a pair of assets A and B:
 
-spread = price_A − β × price_B 
+`spread = price_A − β × price_B`
 
 where β is estimated via linear regression.
 
@@ -94,7 +94,7 @@ This project demonstrates both the **appeal and fragility** of classical pairs t
 ---
 
 ## Repository Structure
-
+`
 .
 ├── data/
 ├── notebooks/
@@ -103,3 +103,4 @@ This project demonstrates both the **appeal and fragility** of classical pairs t
 ├── plots/
 ├── REPORT.md
 └── TECHNICAL_APPENDIX.md
+`
