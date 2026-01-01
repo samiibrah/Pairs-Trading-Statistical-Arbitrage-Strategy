@@ -148,6 +148,6 @@ Key reasons for underperformance:
 
 ## Final Notes
 
-This appendix is intended to demonstrate **implementation depth**, not claim production-ready profitability. The project emphasizes critical thinking around quantitative finance assumptions and highlights common pitfalls in statistical arbitrage strategies.
+This appendix is intended to demonstrate **implementation depth** and is a learning exercise for me. The project emphasizes critical thinking around quantitative finance assumptions and highlights common pitfalls in statistical arbitrage strategies.
 
 ```
