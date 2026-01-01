@@ -78,3 +78,80 @@ def equal_weight_portfolio(returns_by_pair: dict[str, pd.Series]) -> pd.Series:
     port = df.mean(axis=1, skipna=True)
     port.name = "portfolio_ret"
     return port
+
+from __future__ import annotations
+
+from pathlib import Path
+import pandas as pd
+
+from pairs_trading.backtest import pair_returns_from_spread_position, equal_weight_portfolio
+from pairs_trading.plotting import plot_equity_and_drawdown
+
+
+def main() -> None:
+    # ---- Paths (adjust to your repo conventions) ----
+    reports_dir = Path("reports")
+    figures_dir = reports_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    # ---- Load inputs (YOU wire these to your actual artifacts) ----
+    # Expected: prices.csv with columns: date, ticker, close  OR wide format with tickers as columns
+    # Expected: signals for each pair: beta + spread_pos indexed by date
+    #
+    # For now, this is a template showing the exact flow.
+
+    # Example placeholders (replace with your real loading code):
+    prices = pd.read_csv("data/prices_wide.csv", index_col=0, parse_dates=True)
+
+    beta_nvda_jpm = pd.read_csv("data/beta_NVDA_JPM.csv", index_col=0, parse_dates=True).iloc[:, 0]
+    pos_nvda_jpm  = pd.read_csv("data/pos_NVDA_JPM.csv",  index_col=0, parse_dates=True).iloc[:, 0]
+
+    beta_amzn_meta = pd.read_csv("data/beta_AMZN_META.csv", index_col=0, parse_dates=True).iloc[:, 0]
+    pos_amzn_meta  = pd.read_csv("data/pos_AMZN_META.csv",  index_col=0, parse_dates=True).iloc[:, 0]
+
+    # ---- Per-pair returns ----
+    nvda_jpm = pair_returns_from_spread_position(
+        price_y=prices["NVDA"],
+        price_x=prices["JPM"],
+        beta=beta_nvda_jpm,
+        spread_pos=pos_nvda_jpm,
+        fee_bps_per_leg=1.0,
+        slippage_bps_per_leg=0.0,
+        gross_leverage=1.0,
+    )
+
+    amzn_meta = pair_returns_from_spread_position(
+        price_y=prices["AMZN"],
+        price_x=prices["META"],
+        beta=beta_amzn_meta,
+        spread_pos=pos_amzn_meta,
+        fee_bps_per_leg=1.0,
+        slippage_bps_per_leg=0.0,
+        gross_leverage=1.0,
+    )
+
+    # ---- Portfolio ----
+    returns_by_pair = {
+        "NVDA__JPM": nvda_jpm["ret_net"],
+        "AMZN__META": amzn_meta["ret_net"],
+    }
+    portfolio_ret = equal_weight_portfolio(returns_by_pair)
+
+    # ---- Export portfolio returns ----
+    out_csv = reports_dir / "portfolio_ret.csv"
+    portfolio_ret.to_frame(name="portfolio_ret").to_csv(out_csv, index_label="date")
+
+    # ---- Plot ----
+    equity, dd = plot_equity_and_drawdown(portfolio_ret, title="Pairs Trading (Net Returns)", show=False)
+
+    # If your plotting util already saves, great; if not, save here.
+    # Example (only if plot_equity_and_drawdown returns fig objects in your implementation):
+    # fig1.savefig(figures_dir / "equity_curve.png", dpi=200, bbox_inches="tight")
+    # fig2.savefig(figures_dir / "drawdown.png", dpi=200, bbox_inches="tight")
+
+    print(f"Saved: {out_csv}")
+    print("Done.")
+
+
+if __name__ == "__main__":
+    main()
