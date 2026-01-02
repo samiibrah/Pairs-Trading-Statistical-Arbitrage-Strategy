@@ -33,7 +33,7 @@ Normalize using rolling z-score
   - Win rate
   - Annualized return
 
-## Results
+## Results (Baseline: Static Cointegration + Static Hedge Ratio):
 
 Selected pairs(co-integration test):
 | Asset A | Asset B | Cointegration p-value |
@@ -47,7 +47,7 @@ Selected pairs(co-integration test):
 | AMZN–META | 0.030                 | 0.078                | 952          |
 
 Note: While both pairs pass the Engle–Granger cointegration test, the Augmented Dickey-Fuller test indicates weak stationarity of the spread, suggesting mean reversion may be unstable.
-Portfolio performance:
+Portfolio performance (baseline):
 | Metric               | Value           |
 | -------------------- | --------------- |
 | Annualized return    | **–9.6%**       |
@@ -66,7 +66,7 @@ Interpretation: Despite statistically significant cointegration at pair selectio
 - Static hedge ratios were used over long horizons
 - Transaction costs and slippage were not explicitly modeled, further overstating returns
 
-cointegration alone is insufficient for profitable statistical arbitrage.
+Cointegration alone is insufficient for profitable statistical arbitrage.
 
 ## Model Limitations
 
@@ -82,6 +82,52 @@ cointegration alone is insufficient for profitable statistical arbitrage.
 - Volatility and trend regime filters
 - Transaction cost modeling
 - Capital allocation constraints at the portfolio level
+
+
+## Results (Robustness Upgrades: Walk-Forward + Dynamic Hedge + Regime Filters)
+
+This repo implements the “Next improvements” section and re-tests performance under:
+- **Walk-forward validation** (rolling train → trade windows; out-of-sample only)
+- **Dynamic hedge ratios** (Rolling OLS + Kalman filter beta)
+- **Regime filters** (volatility gate + trend gate)
+- **Cost model hooks** (bps + half-spread proxy)
+
+### Notebook 04: Kalman + Filters (Portfolio Result)
+Using a simple multi-pair portfolio with inverse-vol weighting and a gross exposure cap:
+
+| Metric | Value |
+|---|---:|
+| Total return | +1605% |
+| Ending equity | 17.05 |
+| CAGR | 32.9% |
+| Sharpe | 1.94 |
+| Max drawdown | –10.4% |
+| Backtest length | 2,515 trading days |
+
+**Discussion:** Compared with the baseline (static beta + no OOS validation),
+the adaptive approach materially improves risk-adjusted performance, suggesting that
+**relationship drift** (beta instability + regime changes) was a major failure mode.
+
+> Note: Some single-pair “ending equity” values can look unrealistically large depending on
+PnL normalization conventions. The portfolio curve + drawdowns are the most interpretable
+high-level outputs; single-pair results should be interpreted alongside position sizing
+assumptions and transaction cost realism.
+
+---
+
+## Notebooks structure
+
+```mermaid
+flowchart TD
+  A[01_data_exploration_and_pair_selection.ipynb] --> B[02_backtest_and_results.ipynb]
+  B --> C[03_walkforward_validation.ipynb]
+  C --> D[04_dynamic_hedge_ratios_kalman.ipynb]
+
+  A -->|prices + cointegration candidates| B
+  B -->|baseline signals + baseline performance| C
+  C -->|OOS windows + robustness evaluation| D
+  D -->|adaptive beta + filters + costs + portfolio| E[outputs/*.csv + figures]
+
 
 ## Technologies
 Python, pandas, NumPy, statsmodels, Matplotlib
