@@ -1,4 +1,4 @@
-pip# Pairs Trading Statistical Arbitrage Strategy
+#pip# Pairs Trading Statistical Arbitrage Strategy
 
 ## Overview
 This project implements a mean-reversion statistical arbitrage strategy using pairs trading. It identifies cointegrated stock pairs, generates long/short trading signals, and evaluates performance using a fully vectorized backtesting engine.
@@ -144,14 +144,14 @@ pip install -e .
 ```
 ## Notebook roles
 
-01: data sanity checks + candidate universe + cointegration screening
-02: baseline backtest + failure analysis (cointegration ≠ tradable)
-03: walk-forward (rolling cointegration) + out-of-sample trading
-04: dynamic hedge ratios (rolling OLS, Kalman beta) + regime filters + costs + portfolio constraints
+- 01: data sanity checks + candidate universe + cointegration screening
+- 02: baseline backtest + failure analysis (cointegration ≠ tradable)
+- 03: walk-forward (rolling cointegration) + out-of-sample trading
+- 04: dynamic hedge ratios (rolling OLS, Kalman beta) + regime filters + costs + portfolio constraints
 
 ### Key Limitations & Future Work
-# Limitations
 
+## Limitations
 - Costs/slippage are simplified; real execution frictions can dominate returns
 - No hard risk controls (stop-loss, max-hold, circuit breakers)
 - Kalman filter is 1D beta-only (no alpha/intercept state)
