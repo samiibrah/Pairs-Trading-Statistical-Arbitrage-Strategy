@@ -1,0 +1,16 @@
+window,train_start,train_end,trade_start,trade_end,selected_pairs,note,pairs,annualized_return,annualized_vol,sharpe,max_drawdown,win_rate_daily,equity_start,equity_end,n_days
+1,2016-01-04,2018-01-02,2018-01-03,2018-07-03,0,No pairs passed cointegration threshold,,,,,,,,,
+2,2016-07-05,2018-07-03,2018-07-05,2019-01-03,0,No pairs passed cointegration threshold,,,,,,,,,
+3,2017-01-03,2019-01-03,2019-01-04,2019-07-05,0,No pairs passed cointegration threshold,,,,,,,,,
+4,2017-07-05,2019-07-05,2019-07-08,2020-01-03,0,No pairs passed cointegration threshold,,,,,,,,,
+5,2018-01-03,2020-01-03,2020-01-06,2020-07-06,1,,"[{'asset_A': 'AMZN', 'asset_B': 'META', 'coint_pvalue_train': 0.04687426536327045, 'adf_pvalue_spread_train': 0.01239311711273605, 'beta_train': 0.15295832219684502}]",,30.346173636273306,-1.659194629543514,-51.07682562666993,0.28,1.0,-10759.281809075259,126.0
+6,2018-07-05,2020-07-06,2020-07-07,2021-01-04,0,No pairs passed cointegration threshold,,,,,,,,,
+7,2019-01-04,2021-01-04,2021-01-05,2021-07-06,0,No pairs passed cointegration threshold,,,,,,,,,
+8,2019-07-08,2021-07-06,2021-07-07,2022-01-03,1,,"[{'asset_A': 'META', 'asset_B': 'NVDA', 'coint_pvalue_train': 0.047899128079616694, 'adf_pvalue_spread_train': 0.01281354879867842, 'beta_train': 10.758530793168788}]",3.139817985295313e+82,119.48526146029337,-1.4831808012268703,-1444.652703140937,0.2,1.0,8.3384161876645e+40,126.0
+9,2020-01-06,2022-01-03,2022-01-04,2022-07-06,0,No pairs passed cointegration threshold,,,,,,,,,
+10,2020-07-07,2022-07-06,2022-07-07,2023-01-04,0,No pairs passed cointegration threshold,,,,,,,,,
+11,2021-01-05,2023-01-04,2023-01-05,2023-07-07,0,No pairs passed cointegration threshold,,,,,,,,,
+12,2021-07-07,2023-07-07,2023-07-10,2024-01-05,0,No pairs passed cointegration threshold,,,,,,,,,
+13,2022-01-04,2024-01-05,2024-01-08,2024-07-09,1,,"[{'asset_A': 'META', 'asset_B': 'NVDA', 'coint_pvalue_train': 0.01731836944554886, 'adf_pvalue_spread_train': 0.003871653080213252, 'beta_train': 5.354896280907216}]",8.452832077433517e+133,202.6455949006124,-1.1956933213212102,-1582.3330586512618,0.256,1.0,2.704237074752209e+66,126.0
+14,2022-07-07,2024-07-09,2024-07-10,2025-01-07,0,No pairs passed cointegration threshold,,,,,,,,,
+15,2023-01-05,2025-01-07,2025-01-08,2025-07-11,1,,"[{'asset_A': 'JPM', 'asset_B': 'NVDA', 'coint_pvalue_train': 0.019415157792754153, 'adf_pvalue_spread_train': 0.004458183591669787, 'beta_train': 0.8462018497947152}]",5.524877096674572e+68,67.2803030063015,-0.5470899497589381,-67777.13883296207,0.432,1.0,1.2542217164260053e+34,126.0
