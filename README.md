@@ -127,7 +127,7 @@ flowchart TD
   B -->|baseline signals + baseline performance| C
   C -->|OOS windows + robustness evaluation| D
   D -->|adaptive beta + filters + costs + portfolio| E[outputs/*.csv + figures]
-
+```
 
 ## Technologies
 Python, pandas, NumPy, statsmodels, Matplotlib
@@ -141,3 +141,4 @@ source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
 pip install -r requirements.txt
 pip install -e .
 
+```
