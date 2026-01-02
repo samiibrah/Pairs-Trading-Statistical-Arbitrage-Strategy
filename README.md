@@ -142,3 +142,26 @@ pip install -r requirements.txt
 pip install -e .
 
 ```
+## Notebook roles
+
+01: data sanity checks + candidate universe + cointegration screening
+02: baseline backtest + failure analysis (cointegration ≠ tradable)
+03: walk-forward (rolling cointegration) + out-of-sample trading
+04: dynamic hedge ratios (rolling OLS, Kalman beta) + regime filters + costs + portfolio constraints
+
+### Key Limitations & Future Work
+# Limitations
+
+- Costs/slippage are simplified; real execution frictions can dominate returns
+- No hard risk controls (stop-loss, max-hold, circuit breakers)
+- Kalman filter is 1D beta-only (no alpha/intercept state)
+- Results are sensitive to z-score lookbacks, thresholds, and sizing assumptions
+- Survivorship / selection bias risk in small universes
+
+## Future Work
+
+- Full walk-forward around Kalman + filters (not just baseline)
+- 2D Kalman state '[alpha_t , beta_t] + parameter calibration (q/r)' 
+- Market-impact model + spread-based slippage estimates
+- Portfolio optimizer (risk parity sizing, exposure constraints, correlation control)
+- Stronger regime models (HMM / volatility clustering / macro features)
